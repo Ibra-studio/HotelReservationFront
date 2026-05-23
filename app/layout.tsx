@@ -3,6 +3,9 @@ import { Geist, Geist_Mono, Montserrat, Figtree } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const figtreeHeading = Figtree({subsets:['latin'],variable:'--font-heading'});
 
@@ -24,8 +27,18 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased", fontMono.variable, "font-sans", montserrat.variable, figtreeHeading.variable)}
     >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className="flex items-start justify-between">
+        <ThemeProvider>
+        <SidebarProvider>
+          <TooltipProvider>
+          <AppSidebar/>
+          <main className="w-full h-full">
+          {children}
+          </main>
+          </TooltipProvider>
+          
+        </SidebarProvider>
+          </ThemeProvider>
       </body>
     </html>
   )
