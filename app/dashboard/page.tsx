@@ -14,8 +14,8 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import {DashboardChart} from "@/components/DashboardChart"
-import { ArriveeTable } from "@/components/table/ArriveeTable"
 import { columsArrivee, ReservationDuJour } from "@/components/table/columsArrivee"
+import { DataTable } from "@/components/ui/DataTable"
 export default function Page() {
 
 const dataArriveesDuJour: ReservationDuJour[] = [
@@ -105,14 +105,14 @@ const dataArriveesDuJour: ReservationDuJour[] = [
             
           </div>
           <DashboardChart/>
-          <div className="min-h-screen flex-1  md:min-h-min flex-col gap-5" >
+          <div className="min-h-screen flex-1  md:min-h-min flex justify-between" >
             <div>
               <p>Arrivée du Jour</p>
-            <ArriveeTable columns={columsArrivee} data={dataArriveesDuJour} />
+            <DataTable columns={columsArrivee} data={dataArriveesDuJour} search="nomClient" />
             </div>
             <div>
                <p>Depart du Jour</p>
-            <ArriveeTable columns={columsArrivee} data={dataArriveesDuJour} />
+            <DataTable columns={columsArrivee} data={dataArriveesDuJour} search="nomClient"/>
             </div>
           </div>
         </div>
