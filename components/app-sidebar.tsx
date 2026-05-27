@@ -59,15 +59,7 @@ const data = {
         {
           title: "Nouvelle reservation",
           url: "#",
-        },
-        {
-          title: "Arrivées du jour",
-          url: "#",
-        },
-        {
-          title: "Départs du jour",
-          url: "#",
-        },
+        }
       ],
        roles:["Administrateur", "Receptionniste"]
     },
@@ -79,11 +71,6 @@ const data = {
         />
       ),
       items: [
-       
-        {
-          title: "Disponibilité",
-          url: "#",
-        },
         {
           title: "Tous les equipements",
           url: "/equipements",

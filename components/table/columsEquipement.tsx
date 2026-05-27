@@ -1,48 +1,30 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table";
-import {Client} from "@types/Client"
+import {Equipement} from "@types/Equipement"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { ArrowUpDown, Eye, MoreHorizontal, Trash } from "lucide-react";
+import {  Eye, MoreHorizontal, Trash } from "lucide-react";
 
-export const columsClient: ColumnDef<Client>[] = [
-  {
-    accessorKey: "numPieceIdentite",
-    header: "Numero piece d'identite",
-  },
+
+export type Equipement = {
+  id: string
+  nom: string
+ 
+}
+
+export const columsEquipement: ColumnDef<Equipement>[] = [
+ 
   {
     accessorKey: "nom",
-    header: "Nom Client",
+    header: "Capacite d'accueil",
   },
   {
-    accessorKey: "prenom",
-    header: "Prenom",
+    accessorKey: "statut",
+    header: "Statut",
   },
   {
-    accessorKey: "numeroTelephone",
-    header: "Numero de telephone",
-  },
-  {
-     accessorKey: "email", 
-     header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-  },
-  {
-    accessorKey: "EstActif",
-    header: "Status",
-  },
-  {
-    id: "actions",
+    id: "actions", 
     cell: ({ row }) => {
     //   const client = row.original
  
@@ -54,19 +36,19 @@ export const columsClient: ColumnDef<Client>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-45">
+          <DropdownMenuContent align="end" className="w-52">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             
             <DropdownMenuSeparator />
             <DropdownMenuItem>
                 <Eye/>
-                Voir client
+                Voir Chambre
                 </DropdownMenuItem>
            
             <DropdownMenuSeparator/>
             <DropdownMenuItem variant="destructive">
                 <Trash/>
-                Supprimer client
+                supprimer Chambre
                 </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

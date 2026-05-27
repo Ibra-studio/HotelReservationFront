@@ -65,7 +65,7 @@ const dataArriveesDuJour: ReservationDuJour[] = [
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
+                  <BreadcrumbLink href="/dashboard">
                     dashboard
                   </BreadcrumbLink>
                 </BreadcrumbItem>

@@ -1,45 +1,32 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table";
-import {Client} from "@types/Client"
+import {Reservation} from "@types/Reservation"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { ArrowUpDown, Eye, MoreHorizontal, Trash } from "lucide-react";
+import {  Eye, MoreHorizontal, Trash } from "lucide-react";
 
-export const columsClient: ColumnDef<Client>[] = [
+
+export const columsReservation: ColumnDef<Reservation>[] = [
   {
-    accessorKey: "numPieceIdentite",
-    header: "Numero piece d'identite",
+    accessorKey: "dateArrivee",
+    header: "Date d'arrivée",
   },
   {
-    accessorKey: "nom",
-    header: "Nom Client",
+    accessorKey: "dateDepart",
+    header: "Date de depart",
   },
   {
-    accessorKey: "prenom",
-    header: "Prenom",
+    accessorKey: "nombrePersonnes",
+    header: "Nombre de personne",
   },
   {
-    accessorKey: "numeroTelephone",
-    header: "Numero de telephone",
+    accessorKey: "heureArriveeEffective",
+    header: "Heure d'arrivée effective",
   },
   {
-     accessorKey: "email", 
-     header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-  },
-  {
-    accessorKey: "EstActif",
-    header: "Status",
+    accessorKey: "statut",
+    header: "Statut",
   },
   {
     id: "actions",
@@ -54,19 +41,19 @@ export const columsClient: ColumnDef<Client>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-45">
+          <DropdownMenuContent align="end" className="w-52">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             
             <DropdownMenuSeparator />
             <DropdownMenuItem>
                 <Eye/>
-                Voir client
+                Voir reservation
                 </DropdownMenuItem>
            
             <DropdownMenuSeparator/>
             <DropdownMenuItem variant="destructive">
                 <Trash/>
-                Supprimer client
+                supprimer reservation
                 </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
