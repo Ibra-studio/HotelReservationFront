@@ -43,7 +43,7 @@ const data = {
        
         {
           title: "Nouveau client",
-          url: "#",
+          url: "/clients/new",
         }
       ],
        roles:["Administrateur", "Receptionniste"]

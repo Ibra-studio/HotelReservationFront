@@ -7,6 +7,10 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+export const metadata = {
+  title: "hotelReservation",
+};
+
 const figtreeHeading = Figtree({subsets:['latin'],variable:'--font-heading'});
 
 const montserrat = Montserrat({subsets:['latin'],variable:'--font-sans'})
