@@ -1,11 +1,12 @@
 import { Geist, Geist_Mono, Montserrat, Figtree } from "next/font/google"
 
-import "./globals.css"
+import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { getCurrentUser } from "@/app/actions/auth";
 
 export const metadata = {
   title: "hotelReservation",
@@ -20,24 +21,22 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const currentUser = await getCurrentUser()
+  console.log("Current user in RootLayout:", currentUser)
+
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", montserrat.variable, figtreeHeading.variable)}
-    >
-      <body className="flex items-start justify-between">
-        <ThemeProvider>
-        
+    <SidebarProvider>
+      <TooltipProvider>
+        <AppSidebar user={currentUser ?? undefined} />
+        <main className="w-full h-full">
           {children}
-         
-          </ThemeProvider>
-      </body>
-    </html>
+        </main>
+      </TooltipProvider>
+    </SidebarProvider>
   )
 }

@@ -16,6 +16,35 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 
+
+
+
+async function getReservations() {
+   
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/Clients`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          
+        },
+        cache: "no-store" 
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP : ${response.status}`);
+    }
+
+    const clients = await response.json();
+    return clients;
+
+  } catch (error) {
+    console.error("Erreur fetch clients :", error);
+    return [];
+  }
+}
 export default function Page() {
   const dataReservations: Reservation[] = [
   {
