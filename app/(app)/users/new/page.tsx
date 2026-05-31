@@ -1,9 +1,9 @@
-import { TarifForm } from "@/components/forms/TarifForm";
+import { UserForm } from "@/components/forms/UserForm";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
-export default function NewTarifPage() {
+export default function NewUserPage() {
   return (
     <div>
       <header className="flex h-16 shrink-0 items-center gap-2">
@@ -16,10 +16,10 @@ export default function NewTarifPage() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/tarifs">Tarifs</BreadcrumbLink>
+                <BreadcrumbLink href="/users">Utilisateurs</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:flex" />
-              <BreadcrumbItem>Nouveau tarif</BreadcrumbItem>
+              <BreadcrumbItem>Nouvel utilisateur</BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
@@ -28,14 +28,14 @@ export default function NewTarifPage() {
       <div className="flex-1 p-8">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold">Créer un nouveau tarif</h1>
+            <h1 className="text-3xl font-bold">Créer un nouvel utilisateur</h1>
             <p className="mt-2">
-              Remplissez le formulaire ci-dessous pour ajouter un nouveau tarif.
+              Remplissez le formulaire ci-dessous pour ajouter un nouvel utilisateur.
             </p>
           </div>
 
           <div className="bg-secondary rounded-lg shadow p-6">
-            <TarifForm />
+            <UserForm />
           </div>
         </div>
       </div>

@@ -14,6 +14,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { LayoutList, UsersRound, Calendar, BedDouble, HandCoins, TreePalm } from "lucide-react"
+import { useCurrentUser } from "@/context/UserContext"
 
 const data = {
   user: {
@@ -70,6 +71,28 @@ const data = {
         <HandCoins
         />
       ),
+       items: [
+        {
+          title: "Nouveau tarif",
+          url: "/tarifs/new",
+        },
+      ],
+       roles:["Administrateur"]
+    },
+  
+    {
+      title: "Utilisateurs",
+      url: "/users",
+      icon: (
+        <HandCoins
+        />
+      ),
+       items: [
+        {
+          title: "Nouvel utilisateur",
+          url: "/users/new",
+        },
+      ],
        roles:["Administrateur"]
     },
   
@@ -78,6 +101,12 @@ const data = {
 
 export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
   
+  const user = useCurrentUser()
+  const role = user?.role ?? ""
+
+  const filteredItems = data.navMain.filter(item => item.roles.includes(role))
+
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -98,7 +127,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={filteredItems} />
        
       </SidebarContent>
       <SidebarFooter>

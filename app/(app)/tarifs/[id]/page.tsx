@@ -1,9 +1,20 @@
+import { getTarifById } from "@/app/actions/tarif";
 import { TarifForm } from "@/components/forms/TarifForm";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { notFound } from "next/navigation";
 
-export default function NewTarifPage() {
+export default async function TarifDetailsPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const tarif = await getTarifById(id);
+
+  if (!tarif) return notFound();
+
   return (
     <div>
       <header className="flex h-16 shrink-0 items-center gap-2">
@@ -19,7 +30,9 @@ export default function NewTarifPage() {
                 <BreadcrumbLink href="/tarifs">Tarifs</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:flex" />
-              <BreadcrumbItem>Nouveau tarif</BreadcrumbItem>
+              <BreadcrumbItem>
+                Modifier le tarif
+              </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
@@ -27,15 +40,9 @@ export default function NewTarifPage() {
 
       <div className="flex-1 p-8">
         <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold">Créer un nouveau tarif</h1>
-            <p className="mt-2">
-              Remplissez le formulaire ci-dessous pour ajouter un nouveau tarif.
-            </p>
-          </div>
-
           <div className="bg-secondary rounded-lg shadow p-6">
-            <TarifForm />
+            <h2 className="text-xl font-semibold mb-6 text-primary">Modifier le tarif</h2>
+            <TarifForm tarif={tarif} />
           </div>
         </div>
       </div>

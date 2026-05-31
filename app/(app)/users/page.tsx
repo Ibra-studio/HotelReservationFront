@@ -1,5 +1,5 @@
-import { getTarifs } from "@/app/actions/tarif"
-import { columsTarif } from "@/components/table/columsTarif"
+import { getUsers } from "@/app/actions/user"
+import { colusUser } from "@/components/table/columsUser"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sidebar"
 
 export default async function Page() {
-  const tarifs = await getTarifs();
+  const users = await getUsers();
 
   return (
     <>
@@ -27,8 +27,8 @@ export default async function Page() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/tarifs">
-                  Tarifs
+                <BreadcrumbLink href="/users">
+                  Utilisateurs
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </BreadcrumbList>
@@ -36,7 +36,7 @@ export default async function Page() {
         </div>
       </header>
       <div className="flex flex-1 items-center justify-center">
-        <DataTable columns={columsTarif} data={tarifs} search="typeChambre" />
+        <DataTable columns={colusUser} data={users} search="nom" />
       </div>
     </>
   )
