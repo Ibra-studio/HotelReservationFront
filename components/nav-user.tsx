@@ -21,18 +21,12 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { useCurrentUser } from "@/context/UserContext"
 import { ChevronsUpDownIcon, SparklesIcon, BadgeCheckIcon, CreditCardIcon, BellIcon, LogOutIcon } from "lucide-react"
+import Link from "next/link"
 
-export function NavUser({
-  user,
-}: {
-  user?: {
-    nom?: string
-    role?: string
-    email?: string
-    avatar?: string
-  }
-}) {
+export function NavUser() {
+  const user = useCurrentUser()
   const { isMobile } = useSidebar()
   const displayName = user?.nom ?? "Invité"
   const displayEmail = user?.email ?? "Non connecté"
@@ -89,12 +83,12 @@ export function NavUser({
             
             
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheckIcon
-                />
-                Account
+              <DropdownMenuItem asChild>
+                <Link href="/account" className="flex items-center gap-2 cursor-pointer">
+                  <BadgeCheckIcon />
+                  Mon compte
+                </Link>
               </DropdownMenuItem>
-              
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onSelect={() => logout()}>

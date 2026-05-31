@@ -40,7 +40,10 @@ export async function updateChambre(data: ChambreFormData): Promise<void> {
       statut:data.statut,
     }),
   })
-  if (!response.ok) throw new Error(`Erreur update: ${response.status}`)
+  if (!response.ok) {
+  const errorData = await response.json()
+  throw new Error(errorData.message || `Erreur update: ${response.status}`)
+}
 }
 
 export async function createChambre(data: ChambreCreateData): Promise<void> {

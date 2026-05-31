@@ -7,6 +7,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { getCurrentUser } from "@/app/actions/auth";
+import { UserProvider } from "@/context/UserContext";
 
 export const metadata = {
   title: "hotelReservation",
@@ -32,10 +33,12 @@ export default async function RootLayout({
   return (
     <SidebarProvider>
       <TooltipProvider>
-        <AppSidebar user={currentUser ?? undefined} />
+        <UserProvider user={currentUser?? null}>
+        <AppSidebar />
         <main className="w-full h-full">
           {children}
         </main>
+          </UserProvider>
       </TooltipProvider>
     </SidebarProvider>
   )

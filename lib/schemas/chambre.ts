@@ -21,7 +21,7 @@ const baseChambreSchema = {
     .number()
     .int("La capacité doit être un nombre entier")
     .min(1, "La capacité doit être au moins 1")
-    .max(10, "La capacité ne peut pas dépasser 10"),
+    .max(5, "La capacité ne peut pas dépasser 10"),
 
   description: z.string().optional(),
 

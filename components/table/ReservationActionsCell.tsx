@@ -13,7 +13,7 @@ export function ReservationActionsCell({ reservation }: { reservation: Reservati
   const hasFacture = !!reservation.facture
   const canCheckIn = reservation.statut === StatutReservation.Confirmee
   const canCheckOut = reservation.statut === StatutReservation.CheckInEffectue
-  const canCancel = reservation.statut === StatutReservation.CheckOutEffectue || reservation.statut === StatutReservation.Annulee
+  const canCancel = reservation.statut === StatutReservation.Confirmee || reservation.statut === StatutReservation.CheckInEffectue
 
   const handleCheckIn = async () => {
     await checkIn(reservation.id)

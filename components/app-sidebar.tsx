@@ -61,7 +61,7 @@ const data = {
           url: "/chambres/new",
         },
       ],
-       roles:["Administrateur", "Receptionniste"]
+       roles:["Administrateur"]
     },
     {
       title: "Tarifs",
@@ -70,13 +70,13 @@ const data = {
         <HandCoins
         />
       ),
-       roles:["Administrateur", "Receptionniste"]
+       roles:["Administrateur"]
     },
   
   ],
 }
 
-export function AppSidebar({ user, ...props }: { user?: { name?: string; email?: string; avatar?: string } } & React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
   
   return (
     <Sidebar variant="inset" {...props}>
@@ -102,7 +102,7 @@ export function AppSidebar({ user, ...props }: { user?: { name?: string; email?:
        
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={user ?? data.user} />
+        <NavUser/>
       </SidebarFooter>
     </Sidebar>
   )
