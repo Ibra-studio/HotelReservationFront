@@ -6,7 +6,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import {Client} from "@types/Client"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { ArrowUpDown, Eye, MoreHorizontal, Trash } from "lucide-react";
+import { ArrowUpDown, Eye, MoreHorizontal, Trash , Plus} from "lucide-react";
 import { deleteClient } from "@/app/actions/client";
 
 export const columsClient: ColumnDef<Client>[] = [
@@ -96,18 +96,25 @@ export const columsClient: ColumnDef<Client>[] = [
               <Eye />
               Voir client
             </DropdownMenuItem>
+            
+            
+            <DropdownMenuItem onSelect={() => handleCreateReservation(client.id)}>
+              <Plus />
+              Créer une réservation
+            </DropdownMenuItem>
+            
+
            
-            <DropdownMenuSeparator />
               {client.reservations.length > 0 && (
               <>
-               <DropdownMenuSeparator />
+              
               <DropdownMenuItem onSelect={() => handleViewReservations(client.id)}>
                 <Eye />
-                voir les reservations
+                voir les reservations du client
               </DropdownMenuItem>
               </>
             )}
-           
+            <DropdownMenuSeparator />
             <DropdownMenuItem variant="destructive" onSelect={()=> handledeleteClient(client.id)}>
               <Trash />
               Supprimer client

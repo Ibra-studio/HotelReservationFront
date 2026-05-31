@@ -1,4 +1,5 @@
 
+import { getChambres } from "@/app/actions/chambre"
 import { columsChambre } from "@/components/table/columsChambre"
 import {
   Breadcrumb,
@@ -16,29 +17,7 @@ import {
 } from "@/components/ui/sidebar"
 import { API_BASE_URL, getAuthHeaders } from "@/lib/api"
 
-async function getChambres() {
-   
-  try {
-    const response = await fetch(
-      `${API_BASE_URL}/Chambre`,
-      {
-        headers: await getAuthHeaders(),
-        cache: "no-store" 
-      }
-    );
 
-    if (!response.ok) {
-      throw new Error(`Erreur HTTP : ${response.status}`);
-    }
-
-    const chambres = await response.json();
-    return chambres;
-
-  } catch (error) {
-    console.error("Erreur fetch chambres :", error);
-    return [];
-  }
-}
 export default async function Page() {
   const chambres = await getChambres();
   return (

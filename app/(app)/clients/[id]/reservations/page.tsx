@@ -1,6 +1,6 @@
 
 import { columsReservation } from "@/components/table/columsReservation"
-import {Reservation} from "@types/Reservation"
+
 import {
   Breadcrumb,
   BreadcrumbItem,

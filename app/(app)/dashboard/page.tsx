@@ -4,8 +4,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
+
 } from "@/components/ui/breadcrumb"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
@@ -16,7 +15,9 @@ import {
 import {DashboardChart} from "@/components/DashboardChart"
 import { columsArrivee, ReservationDuJour } from "@/components/table/columsArrivee"
 import { DataTable } from "@/components/ui/DataTable"
-export default function Page() {
+import { getChambres } from "@/app/actions/chambre"
+export default async function Page() {
+  const chambresCount= await getChambres().then(chambres => chambres.length)
 
 const dataArriveesDuJour: ReservationDuJour[] = [
   {
@@ -81,7 +82,7 @@ const dataArriveesDuJour: ReservationDuJour[] = [
                     <CardTitle>Chambres disponibles</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-3xl font-bold">12</p>
+                  <p className="text-3xl font-bold">{chambresCount}</p>
                   </CardContent>
                 </Card>
 

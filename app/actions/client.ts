@@ -1,6 +1,6 @@
 "use server"
 
-import { API_BASE_URL } from "@/lib/api"
+import { API_BASE_URL, getAuthHeaders } from "@/lib/api"
 import { ClientFormData } from "@/lib/schemas/client"
 
 // PUT
@@ -27,7 +27,24 @@ export async function createClient(data: Omit<ClientFormData, "id">): Promise<vo
 export async function deleteClient(id: string): Promise<void> {
   const response = await fetch(`${API_BASE_URL}/Clients/${id}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    headers: await getAuthHeaders(),
   })
   if (!response.ok) throw new Error(`Erreur delete: ${response.status}`)
+}
+
+// GET ALL
+export async function getClients() {
+  const response = await fetch(`${API_BASE_URL}/Clients`, {
+    headers: await getAuthHeaders(),
+  })
+  if (!response.ok) throw new Error(`Erreur fetch: ${response.status}`)
+  return response.json()
+}
+export async function getClientById(id: string) {
+  console.log("Fetching client with ID:", id)
+  const response = await fetch(`${API_BASE_URL}/Clients/${id}`, {
+    headers: await getAuthHeaders(),
+  })
+  if (!response.ok) throw new Error(`Erreur fetch: ${response.status}`)
+  return response.json()
 }

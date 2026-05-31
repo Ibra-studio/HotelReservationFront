@@ -3,6 +3,29 @@
 import { API_BASE_URL, getAuthHeaders } from "@/lib/api"
 import { ChambreFormData, ChambreCreateData } from "@/lib/schemas/chambre"
 
+export async function getChambres() {
+   
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/Chambre`,
+      {
+        headers: await getAuthHeaders(),
+        cache: "no-store" 
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP : ${response.status}`);
+    }
+
+    const chambres = await response.json();
+    return chambres;
+
+  } catch (error) {
+    console.error("Erreur fetch chambres :", error);
+    return [];
+  }
+}
 export async function updateChambre(data: ChambreFormData): Promise<void> {
   console.log("Données reçues pour updateChambre:", data)
   const response = await fetch(`${API_BASE_URL}/Chambre/${data.id}`, {

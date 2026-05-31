@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import { API_BASE_URL } from "@/lib/api"
+import { API_BASE_URL, getAuthHeaders } from "@/lib/api"
 import { LoginFormData } from "@/lib/schemas/auth"
 
 export async function login(data: LoginFormData) {
@@ -60,10 +60,7 @@ export async function getCurrentUser() {
   if (!token) return null
 
   const response = await fetch(`${API_BASE_URL}/User/me`, {
-    headers: {
-      Authorization: `bearer ${token}`,
-      "Content-Type": "application/json",
-    },
+    headers: await getAuthHeaders(),
     cache: "no-store",
   })
 
