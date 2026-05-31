@@ -1,18 +1,19 @@
-// app/clients/[id]/page.tsx
-import { ClientForm } from "@/components/forms/ClientForm";
+// app/chambres/[id]/page.tsx
+import { ChambreForm } from "@/components/forms/ChambreForm";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Client } from "@types/Client";
+import { Chambre } from "@types/Chambre";
 import { API_BASE_URL, getAuthHeaders } from "@/lib/api";
+import { getEquipements } from "@/app/actions/equipement";
 
-interface ClientDetailsPageProps {
+interface ChambreDetailsPageProps {
   params: Promise<{ id: string }>;
 }
 
-async function getClientById(id: string): Promise<Client | null> {
+async function getChambreById(id: string): Promise<Chambre | null> {
   try {
-    const response = await fetch(`${API_BASE_URL}/Clients/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/Chambre/${id}`, {
       headers: await getAuthHeaders(),
       cache: "no-store",
     })
@@ -21,19 +22,20 @@ async function getClientById(id: string): Promise<Client | null> {
     return await response.json()
 
   } catch (error) {
-    console.error("Erreur fetch client by id :", error)
+    console.error("Erreur fetch chambre by id :", error)
     return null
   }
 }
 
 
-export default async function ClientDetailsPage({
+export default async function ChambreDetailsPage({
   params,
-}: ClientDetailsPageProps) {
+}: ChambreDetailsPageProps) {
   const { id } = await params;
-  const client = await getClientById(id);
+  const chambre = await getChambreById(id);
+  const equipements = await getEquipements();
 
-  if (!client) {
+  if (!chambre) {
     return (
       <div>
         <header className="flex h-16 shrink-0 items-center gap-2">
@@ -46,7 +48,7 @@ export default async function ClientDetailsPage({
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="/clients">Clients</BreadcrumbLink>
+                  <BreadcrumbLink href="/chambres">Chambres</BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -55,10 +57,10 @@ export default async function ClientDetailsPage({
         <div className="flex items-center justify-center p-8">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">
-              Client non trouvé
+              Chambre non trouvée
             </h1>
             <p className="text-gray-600">
-              Le client avec l'ID {id} n'existe pas.
+              La chambre avec l'ID {id} n'existe pas.
             </p>
           </div>
         </div>
@@ -78,11 +80,11 @@ export default async function ClientDetailsPage({
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/clients">Clients</BreadcrumbLink>
+                <BreadcrumbLink href="/chambres">Chambres</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:flex" />
               <BreadcrumbItem>
-                {client.nom} {client.prenom}
+                Chambre {chambre.numChambre}
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -93,7 +95,7 @@ export default async function ClientDetailsPage({
         <div className="max-w-4xl mx-auto">
           <div className="bg-secondary rounded-lg shadow p-6">
             <h2 className="text-xl font-semibold mb-6 text-primary">Modifier les informations</h2>
-            <ClientForm client={client} />
+            <ChambreForm chambre={chambre} equipements={equipements} />
           </div>
         </div>
       </div>

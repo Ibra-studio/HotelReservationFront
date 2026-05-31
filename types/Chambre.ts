@@ -30,15 +30,27 @@ export type UpdateChambre = {
   statut: StatutChambre
 }
 
-export type TypeChambre = 
-  | "Simple"
-  | "Double"
-  | "Suite"
-
+export enum TypeChambre {
+  Simple = 0,
+  Double = 1,
+  Suite = 2,
+}
 
 export enum StatutChambre {
-  Disponible = 1,
-  Occupee = 2,
-  EnMaintenance = 3,
-  Desactivee = 4
+  Disponible = 0,
+  Occupée = 1,
+  EnMaintenance = 2,
+  Desactivee = 3,
+}
+export const TypeChambreLabels: Record<TypeChambre, string> = {
+  [TypeChambre.Simple]: "Simple",
+  [TypeChambre.Double]: "Double",
+  [TypeChambre.Suite]: "Suite",
+}
+
+export const StatutChambreLabels: Record<StatutChambre, string> = {
+  [StatutChambre.Disponible]: "Disponible",
+  [StatutChambre.Occupée]: "Occupée",
+  [StatutChambre.EnMaintenance]: "En maintenance",
+  [StatutChambre.Desactivee]: "Désactivée",
 }

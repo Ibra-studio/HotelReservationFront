@@ -49,21 +49,6 @@ const data = {
        roles:["Administrateur", "Receptionniste"]
     },
     {
-      title: "Reservations",
-      url: "/reservations",
-      icon: (
-        <Calendar
-        />
-      ),
-      items: [
-        {
-          title: "Nouvelle reservation",
-          url: "#",
-        }
-      ],
-       roles:["Administrateur", "Receptionniste"]
-    },
-    {
       title: "Chambres",
       url: "/chambres",
       icon: (
@@ -72,8 +57,8 @@ const data = {
       ),
       items: [
         {
-          title: "Tous les equipements",
-          url: "/equipements",
+          title: "Nouvelle chambre",
+          url: "/chambres/new",
         },
       ],
        roles:["Administrateur", "Receptionniste"]

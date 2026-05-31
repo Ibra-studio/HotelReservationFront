@@ -1,5 +1,6 @@
 
-import { columsChambre } from "@/components/table/columsChambre"
+import { columsReservation } from "@/components/table/columsReservation"
+import {Reservation} from "@types/Reservation"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -16,11 +17,15 @@ import {
 } from "@/components/ui/sidebar"
 import { API_BASE_URL, getAuthHeaders } from "@/lib/api"
 
-async function getChambres() {
+
+
+
+async function getReservations(clientId:string) {
    
   try {
     const response = await fetch(
-      `${API_BASE_URL}/Chambre`,
+      `${API_BASE_URL}/Reservations/client/${clientId}
+`,
       {
         headers: await getAuthHeaders(),
         cache: "no-store" 
@@ -31,16 +36,19 @@ async function getChambres() {
       throw new Error(`Erreur HTTP : ${response.status}`);
     }
 
-    const chambres = await response.json();
-    return chambres;
+    const reservations = await response.json();
+    return reservations;
 
   } catch (error) {
-    console.error("Erreur fetch chambres :", error);
+    console.error("Erreur fetch reservations :", error);
     return [];
   }
 }
-export default async function Page() {
-  const chambres = await getChambres();
+
+
+export default async function ClientReservationsPage({params}: {params: Promise<{id:string}>}) {
+  const { id } = await params;
+   const reservations=  await getReservations(id) 
   return (
     <>
     
@@ -54,8 +62,8 @@ export default async function Page() {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="/chambres">
-                    Chambres
+                  <BreadcrumbLink href="/reservations">
+                    Reservations
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                
@@ -63,9 +71,10 @@ export default async function Page() {
             </Breadcrumb>
           </div>
         </header>
-       <div className="flex flex-1 items-center justify-center ">
-                 <DataTable columns={columsChambre} data={chambres} search="statut"/>
-             </div>
+         <div className="flex flex-1 items-center justify-center ">
+                  <DataTable columns={columsReservation} data={reservations} search="statut"/> 
+                  {/* //TODO: ajouter nom prenom , et num de chambre dans l'api , dto reservation , et include */}
+         </div>
   </>
       
   )

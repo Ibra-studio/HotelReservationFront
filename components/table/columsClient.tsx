@@ -64,7 +64,13 @@ export const columsClient: ColumnDef<Client>[] = [
       const handleViewClient = (clientId: string) => { 
         router.push(`/clients/${clientId}`);
       };
-
+    
+      const handleViewReservations = (clientId: string) => {
+        router.push(`/clients/${clientId}/reservations`);
+      }
+      const handleCreateReservation = (clientId: string) => {
+        router.push(`/clients/${clientId}/reservations/create`);
+      }
       const  handledeleteClient =async (clientId: string) => {
          
        try {
@@ -82,7 +88,7 @@ export const columsClient: ColumnDef<Client>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-45">
+          <DropdownMenuContent align="end" className="w-fit">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             
             <DropdownMenuSeparator />
@@ -92,10 +98,21 @@ export const columsClient: ColumnDef<Client>[] = [
             </DropdownMenuItem>
            
             <DropdownMenuSeparator />
+              {client.reservations.length > 0 && (
+              <>
+               <DropdownMenuSeparator />
+              <DropdownMenuItem onSelect={() => handleViewReservations(client.id)}>
+                <Eye />
+                voir les reservations
+              </DropdownMenuItem>
+              </>
+            )}
+           
             <DropdownMenuItem variant="destructive" onSelect={()=> handledeleteClient(client.id)}>
               <Trash />
               Supprimer client
             </DropdownMenuItem>
+          
           </DropdownMenuContent>
         </DropdownMenu>
       );

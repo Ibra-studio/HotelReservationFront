@@ -1,3 +1,4 @@
+import { IdReservation } from "./Reservation"
 
 export type Client = {
     id:string
@@ -8,5 +9,5 @@ export type Client = {
     email:string
     adresse:string
     estActif:boolean
-
+    reservations: IdReservation[]
 }

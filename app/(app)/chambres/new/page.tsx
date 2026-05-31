@@ -1,12 +1,12 @@
-// app/clients/new/page.tsx
-
-import { ClientCreateForm } from "@/components/forms/ClientCreateForm";
+// app/chambres/new/page.tsx
+import { getEquipements } from "@/app/actions/equipement";
+import { ChambreCreateForm } from "@/components/forms/ChambreCreateForm";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
-export default  function NewClientPage() {
-  
+export default async function NewChambrePage() {
+      const equipements= await getEquipements();
   return (
     <div>
       <header className="flex h-16 shrink-0 items-center gap-2">
@@ -19,10 +19,10 @@ export default  function NewClientPage() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/clients">Clients</BreadcrumbLink>
+                <BreadcrumbLink href="/chambres">Chambres</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:flex" />
-              <BreadcrumbItem>Nouveau client</BreadcrumbItem>
+              <BreadcrumbItem>Nouvelle chambre</BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
@@ -31,14 +31,14 @@ export default  function NewClientPage() {
       <div className="flex-1 p-8">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold">Créer un nouveau client</h1>
+            <h1 className="text-3xl font-bold">Créer une nouvelle chambre</h1>
             <p className="mt-2">
-              Remplissez le formulaire ci-dessous pour ajouter un nouveau client.
+              Remplissez le formulaire ci-dessous pour ajouter une nouvelle chambre.
             </p>
           </div>
 
           <div className="bg-secondary rounded-lg shadow p-6">
-            <ClientCreateForm />
+            <ChambreCreateForm  equipements={equipements}/>
           </div>
         </div>
       </div>

@@ -2,12 +2,21 @@
 
 import { Facture } from "./Facture"
 
-export type StatutReservation =
-  | "Confirmee"
-  | "Annulee"
-  | "CheckInEffectue"
-  | "CheckOutEffectue"
-
+export enum StatutReservation {
+  Confirmee = 0,
+  Annulee = 1,
+  CheckInEffectue = 2,
+  CheckOutEffectue = 3
+}
+export const statutReservationLabels: Record<StatutReservation, string> = {
+  [StatutReservation.Confirmee]: "Confirmée",
+  [StatutReservation.Annulee]: "Annulée",
+  [StatutReservation.CheckInEffectue]: "Check-in effectué",
+  [StatutReservation.CheckOutEffectue]: "Check-out effectué"
+}
+export type IdReservation={
+  id:string
+}
 export type Reservation = {
   id: string
   clientId: string

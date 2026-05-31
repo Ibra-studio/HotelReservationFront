@@ -9,7 +9,8 @@ export function cn(...inputs: ClassValue[]) {
 import {
   Wifi, Wind, Tv, Coffee, Bath, Lock, Car, Dumbbell,
   Utensils, Phone, Shirt, Baby, Flame, Snowflake, Volume2,
-  type LucideIcon
+  type LucideIcon,
+  Sunset
 } from "lucide-react"
 
 export const equipementIconMap: Record<string, LucideIcon> = {
@@ -36,6 +37,11 @@ export const equipementIconMap: Record<string, LucideIcon> = {
   "jacuzzi": Bath,
   "baignoire": Bath,
   "bain": Bath,
+  
+  //balcon
+  "balcon": Sunset,
+  "terrasse": Sunset,
+
 
   // Coffre-fort
   "coffre-fort": Lock,
@@ -70,4 +76,12 @@ export const equipementIconMap: Record<string, LucideIcon> = {
 export function getEquipementIcon(nom: string): LucideIcon {
   const key = nom.toLowerCase().trim()
   return equipementIconMap[key] ?? Utensils // icône par défaut
+}
+
+export function formatDateTime(dateStr: string | null | undefined): string {
+  if (!dateStr) return "—"
+  return new Date(dateStr).toLocaleString("fr-FR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  })
 }
