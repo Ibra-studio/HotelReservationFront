@@ -60,8 +60,6 @@ export function ReservationForm({ reservation, currentChambre }: ReservationForm
             setChambresDisponibles(data);
           }
         } catch (err) {
-          console.error("Erreur lors du chargement des chambres:", err);
-          // En cas d'erreur, garde au moins la chambre actuelle
           setChambresDisponibles([currentChambre]);
         } finally {
           setChambresLoading(false);

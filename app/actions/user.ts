@@ -14,7 +14,6 @@ export async function getUserProfile(): Promise<User | null> {
     if (!response.ok) return null
     return response.json()
   } catch (error) {
-    console.error("Erreur fetch user profile:", error)
     return null
   }
 }
@@ -37,7 +36,6 @@ export async function getUsers(): Promise<UserDto[]> {
     return users;
 
   } catch (error) {
-    console.error("Erreur fetch users :", error);
     return [];
   }
 }
@@ -78,7 +76,6 @@ export async function reactivateUser(id: string): Promise<void> {
 }
 
 export async function updateUserProfile(clientId:string,data: UpdateUserFormData): Promise<void> {
-  console.log("Updating user profile with data:", clientId, data) // Debug log to check the data being sent
   const response = await fetch(`${API_BASE_URL}/User/${clientId}`, {
     method: "PUT",
     headers: await getAuthHeaders(),

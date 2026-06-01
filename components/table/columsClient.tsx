@@ -72,11 +72,10 @@ export const columsClient: ColumnDef<Client>[] = [
         router.push(`/clients/${clientId}/reservations/create`);
       }
       const  handledeleteClient =async (clientId: string) => {
-         
        try {
         await deleteClient(clientId)
        } catch (err) {
-         console.log(err instanceof Error ? err.message : "Une erreur est survenue")
+         // Error handled silently
        }
       }
 

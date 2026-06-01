@@ -23,7 +23,6 @@ async function getChambreById(chambreId: string): Promise<Chambre | null> {
     return await response.json()
 
   } catch (error) {
-    console.error("Erreur fetch chambre by id :", error)
     return null
   }
 }

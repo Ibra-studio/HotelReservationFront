@@ -52,7 +52,6 @@ export function ReservationCreateForm({ clientId }: ReservationCreateFormProps) 
           const data = await getChambresDisponibles(dateArrivee, dateDepart);
           setChambresDisponibles(data);
         } catch (err) {
-          console.error("Erreur lors du chargement des chambres:", err);
           setChambresDisponibles([]);
         } finally {
           setChambresLoading(false);

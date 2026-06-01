@@ -21,7 +21,6 @@ async function getClientById(id: string): Promise<Client | null> {
     return await response.json()
 
   } catch (error) {
-    console.error("Erreur fetch client by id :", error)
     return null
   }
 }

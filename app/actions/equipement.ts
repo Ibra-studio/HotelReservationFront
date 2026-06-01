@@ -19,7 +19,6 @@ export async function getEquipements() {
     return equipements;
 
   } catch (error) {
-    console.error("Erreur fetch equipements :", error);
     return [];
   }
 }

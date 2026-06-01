@@ -28,7 +28,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const currentUser = await getCurrentUser()
-  console.log("Current user in RootLayout:", currentUser)
 
   return (
     <SidebarProvider>

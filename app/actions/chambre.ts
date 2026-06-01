@@ -22,12 +22,10 @@ export async function getChambres() {
     return chambres;
 
   } catch (error) {
-    console.error("Erreur fetch chambres :", error);
     return [];
   }
 }
 export async function updateChambre(data: ChambreFormData): Promise<void> {
-  console.log("Données reçues pour updateChambre:", data)
   const response = await fetch(`${API_BASE_URL}/Chambre/${data.id}`, {
     method: "PUT",
     headers: await getAuthHeaders(),

@@ -40,7 +40,6 @@ async function getReservations(clientId:string) {
     return reservations;
 
   } catch (error) {
-    console.error("Erreur fetch reservations :", error);
     return [];
   }
 }

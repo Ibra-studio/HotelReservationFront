@@ -20,7 +20,7 @@ export function ChambreActionsCell({ chambre }: { chambre: Chambre }) {
       await deleteChambre(chambreId);
       router.refresh();
     } catch (err) {
-      console.log(err instanceof Error ? err.message : "Une erreur est survenue");
+      // Error handled silently
     }
   };
 

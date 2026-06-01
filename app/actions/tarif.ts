@@ -22,7 +22,6 @@ export async function getTarifs(): Promise<TarifDto[]> {
     return tarifs;
 
   } catch (error) {
-    console.error("Erreur fetch tarifs :", error);
     return [];
   }
 }
@@ -38,7 +37,6 @@ export async function getTarifById(id: string): Promise<TarifDto | null> {
     return await response.json()
 
   } catch (error) {
-    console.error("Erreur fetch tarif by id :", error)
     return null
   }
 }

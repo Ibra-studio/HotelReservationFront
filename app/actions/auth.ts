@@ -12,20 +12,15 @@ export async function login(data: LoginFormData) {
     body: JSON.stringify(data),
   })
 
- // log le status et le body brut
-  const responseText = await response.text()
-  console.log("Status:", response.status)
-  console.log("Body brut:", responseText)
+ const responseText = await response.text()
 
   if (!response.ok) {
     throw new Error("Email ou mot de passe incorrect")
   }
- // ← parse depuis responseText, pas response.json()
+
   const responseData = JSON.parse(responseText)
-  console.log("Response data:", responseData)
 
   const token = responseData.token ?? responseData.Token ?? responseData.accessToken
-  console.log("Token extrait:", token)
 
   if (!token) {
     throw new Error("Token non trouvé dans la réponse")

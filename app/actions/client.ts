@@ -41,7 +41,6 @@ export async function getClients() {
   return response.json()
 }
 export async function getClientById(id: string) {
-  console.log("Fetching client with ID:", id)
   const response = await fetch(`${API_BASE_URL}/Clients/${id}`, {
     headers: await getAuthHeaders(),
   })

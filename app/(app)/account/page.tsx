@@ -9,7 +9,6 @@ import { KeyIcon } from "lucide-react"
 
 export default async function AccountPage() {
   const user = await getUserProfile()
-  console.log("User profile data:", user) // Debug log to check the user data
 
   if (!user) {
     return (

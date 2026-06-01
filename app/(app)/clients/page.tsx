@@ -29,7 +29,6 @@ async function getClients() {
     return clients;
 
   } catch (error) {
-    console.error("Erreur fetch clients :", error);
     return [];
   }
 }
