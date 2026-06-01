@@ -56,8 +56,8 @@ L'application sera disponible sur : **http://localhost:3000**
 
 | Rôle | Email | Mot de passe |
 |------|-------|--------------|
-| Administrateur | admin@hotel.com | Admin123! |
-| Réceptionniste | receptionniste@hotel.com | Recep123! |
+| Administrateur | admin@hotel.com | Admin124! |
+| Réceptionniste | receptionniste@hotel.com| recep123 |
 
 > Les deux rôles donnent accès à des fonctionnalités différentes (voir ci-dessous).
 
