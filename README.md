@@ -80,7 +80,7 @@ Le dashboard affiche en temps réel :
 | Action | Raccourci / Interaction |
 |--------|------------------------|
 | Ouvrir / Fermer la sidebar | `Ctrl + B` |
-| Basculer Dark / Light mode | Cliquer sur l'icône 🌙 / ☀️ en bas à gauche de la sidebar |
+| Basculer Dark / Light mode | Cliquer sur  La lettre `d` du clavier |
 ## 👥 Accès par rôle
 
 | Fonctionnalité | Administrateur | Réceptionniste |
