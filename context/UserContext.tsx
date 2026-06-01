@@ -4,8 +4,9 @@ import { createContext, useContext } from "react"
 
 interface CurrentUser {
   userId: string
+  nom:string
   role?: string
-    email?: string
+ email?: string
     avatar?: string
 }
 

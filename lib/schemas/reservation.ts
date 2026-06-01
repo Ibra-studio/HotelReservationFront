@@ -45,3 +45,19 @@ export const reservationCreateSchema = z.object({
 );
 
 export type ReservationCreateData = z.infer<typeof reservationCreateSchema>;
+
+export const reservationUpdateSchema = z.object({
+  chambreId: baseReservationSchema.chambreId,
+  nombrePersonnes: baseReservationSchema.nombrePersonnes,
+  dateArrivee: baseReservationSchema.dateArrivee,
+  dateDepart: baseReservationSchema.dateDepart,
+  remiseAppliquee: baseReservationSchema.remiseAppliquee,
+}).refine(
+  (data) => new Date(data.dateDepart) > new Date(data.dateArrivee),
+  {
+    message: "La date de départ doit être après la date d'arrivée",
+    path: ["dateDepart"],
+  }
+);
+
+export type ReservationUpdateData = z.infer<typeof reservationUpdateSchema>;

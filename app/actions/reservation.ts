@@ -1,7 +1,7 @@
 "use server"
 
 import { API_BASE_URL, getAuthHeaders } from "@/lib/api"
-import { ReservationCreateData } from "@/lib/schemas/reservation"
+import { ReservationCreateData, ReservationUpdateData } from "@/lib/schemas/reservation"
 
 export async function createReservation(data: ReservationCreateData): Promise<void> {
   const response = await fetch(`${API_BASE_URL}/Reservations`, {
@@ -9,7 +9,10 @@ export async function createReservation(data: ReservationCreateData): Promise<vo
     headers: await getAuthHeaders(),
     body: JSON.stringify(data),
   })
-  if (!response.ok) throw new Error(`Erreur create: ${response.status}`)
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || `Erreur create : ${response.status}`)
+  }
 }
 
 export async function getChambresDisponibles(dateArrivee: string, dateDepart: string) {
@@ -19,7 +22,22 @@ export async function getChambresDisponibles(dateArrivee: string, dateDepart: st
     headers: await getAuthHeaders(),
     }
   )
-  if (!response.ok) throw new Error(`Erreur fetch: ${response.status}`)
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || `Erreur réactivation : ${response.status}`)
+  }
+  return response.json()
+}
+
+export async function getReservationById(reservationId: string) {
+  const response = await fetch(`${API_BASE_URL}/Reservations/${reservationId}`, {
+    method: "GET",
+    headers: await getAuthHeaders(),
+  })
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || `Erreur fetch : ${response.status}`)
+  }
   return response.json()
 }
 
@@ -28,7 +46,10 @@ export async function checkIn (ReservationId: string): Promise<void> {
     method: "PUT",
     headers: await getAuthHeaders(),
   })
-  if (!response.ok) throw new Error(`Erreur check-in: ${response.status}`)
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || `Erreur réactivation : ${response.status}`)
+  }
 }
 
 export async function checkOut (ReservationId: string): Promise<void> {
@@ -36,12 +57,30 @@ export async function checkOut (ReservationId: string): Promise<void> {
     method: "PUT",
     headers: await getAuthHeaders(),
   })
-  if (!response.ok) throw new Error(`Erreur check-out: ${response.status}`)
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || `Erreur réactivation : ${response.status}`)
+  }
 }
 export async function annulerReservation (ReservationId: string): Promise<void> {
   const response = await fetch(`${API_BASE_URL}/Reservations/${ReservationId}`, {
     method: "DELETE",
     headers: await getAuthHeaders(),
   })
-  if (!response.ok) throw new Error(`Erreur annulation: ${response.status}`)
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || `Erreur annulation : ${response.status}`)
+  }
+}
+
+export async function updateReservation(reservationId: string, data: ReservationUpdateData): Promise<void> {
+  const response = await fetch(`${API_BASE_URL}/Reservations/${reservationId}`, {
+    method: "PUT",
+    headers: await getAuthHeaders(),
+    body: JSON.stringify(data),
+  })
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || `Erreur mise à jour : ${response.status}`)
+  }
 }

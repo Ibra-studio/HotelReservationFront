@@ -60,7 +60,7 @@ export default async function ClientsPage() {
           </div>
         </header>
       <div className="flex flex-1 items-center justify-center ">
-          <DataTable columns={columsClient} data={clients} search="email"/>
+          <DataTable columns={columsClient} data={clients} search="numeroTelephone"/>
       </div>
     </div>
   );

@@ -99,7 +99,7 @@ const dataArriveesDuJour: ReservationDuJour[] = [
                     <CardTitle>Departs aujourd'hui</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-3xl font-bold">2</p>
+                    <p className="text-3xl font-bold">5</p>
                   </CardContent>
               </Card>
              

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Button } from "../ui/button"
-import { LogIn, LogOut, MoreHorizontal, Printer } from "lucide-react"
+import { LogIn, LogOut, MoreHorizontal, Printer, Edit } from "lucide-react"
 import { Reservation, StatutReservation } from "@types/Reservation"
 import { annulerReservation, checkIn, checkOut } from "@/app/actions/reservation"
 import { generateFacturePdf } from "@/lib/generateFacturePdf"
@@ -14,6 +14,7 @@ export function ReservationActionsCell({ reservation }: { reservation: Reservati
   const canCheckIn = reservation.statut === StatutReservation.Confirmee
   const canCheckOut = reservation.statut === StatutReservation.CheckInEffectue
   const canCancel = reservation.statut === StatutReservation.Confirmee || reservation.statut === StatutReservation.CheckInEffectue
+  const canModify = new Date(reservation.dateArrivee) > new Date()
 
   const handleCheckIn = async () => {
     await checkIn(reservation.id)
@@ -29,6 +30,10 @@ export function ReservationActionsCell({ reservation }: { reservation: Reservati
     router.refresh()
   }
 
+  const handleModify = () => {
+    router.push(`/clients/${reservation.clientId}/reservations/${reservation.id}/modifier`)
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -39,6 +44,17 @@ export function ReservationActionsCell({ reservation }: { reservation: Reservati
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-52">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem
+          disabled={!canModify}
+          onClick={handleModify}
+          className={!canModify ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+        >
+          <Edit />
+          Modifier
+        </DropdownMenuItem>
+
         <DropdownMenuSeparator />
 
         <DropdownMenuItem
