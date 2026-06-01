@@ -75,6 +75,12 @@ Le dashboard affiche en temps réel :
 
 ---
 
+## ⌨️ Raccourcis et fonctionnalités UI
+
+| Action | Raccourci / Interaction |
+|--------|------------------------|
+| Ouvrir / Fermer la sidebar | `Ctrl + B` |
+| Basculer Dark / Light mode | Cliquer sur l'icône 🌙 / ☀️ en bas à gauche de la sidebar |
 ## 👥 Accès par rôle
 
 | Fonctionnalité | Administrateur | Réceptionniste |
