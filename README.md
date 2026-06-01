@@ -29,15 +29,18 @@ cd <nom-du-dossier>
 npm install
 ```
 
-### 3. Configurer les variables d'environnement
+### 3. Configurer le port du backend
 
-Créer un fichier `.env.local` à la racine du projet :
+Ouvrir le fichier `lib/api.ts` et modifier le port si nécessaire :
 
-```env
-NEXT_PUBLIC_API_URL=http://localhost:5241/api
+```typescript
+export const API_BASE_URL = "http://localhost:5241/api"
+//                                            ^^^^
+//                         Remplacez par le port de votre backend
+//                         (visible dans le README backend ou dans
+//                          appsettings.json → launchSettings.json)
 ```
 
-> Vérifiez que le port correspond bien à celui du backend (visible dans le README backend).
 
 ### 4. Lancer l'application
 
